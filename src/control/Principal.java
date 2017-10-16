@@ -1,16 +1,11 @@
-package control;
+package br.cefet;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class Principal {
     
@@ -19,17 +14,22 @@ public class Principal {
     	String path = new Principal().getClass().getResource("Cep.dat").getPath();
     	String pathDois = new Principal().getClass().getResource("blocoOrdenado.txt").getPath();
     	
+    	PrintWriter writer = new PrintWriter(pathDois);
+    	writer.print("");
+    	writer.close();
+    	
     	System.out.println("Digite a quantidade de Arquivos a ordenar:");
     	Scanner scan = new Scanner(System.in);
     	int quantidadeRegistros = scan.nextInt();
+    	Scanner scanner = new Scanner(new FileReader(path)).useDelimiter("\\n");
+    	String textoPronto = null;
     	
-    	ArrayList<Endereco> bloco = LeituraEscrita.leitor(path, quantidadeRegistros);
-    	Collections.sort(bloco);
-    	
-    	String textoPronto = LeituraEscrita.quebraLinhas(bloco);
-    	LeituraEscrita.escritor(pathDois, textoPronto);
-    	
-    	System.out.println(textoPronto);
+    	while(scanner.hasNext()) {
+    		ArrayList<Endereco> bloco = LeituraEscrita.leitor(scanner, quantidadeRegistros);
+        	Collections.sort(bloco);
+        	textoPronto = LeituraEscrita.quebraLinhas(bloco);
+        	LeituraEscrita.escritor(pathDois, textoPronto);
+    	}
     	
     }
     
