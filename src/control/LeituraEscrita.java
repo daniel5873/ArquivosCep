@@ -31,7 +31,7 @@ public class LeituraEscrita {
 			
 		}
 		return bloco;
-    }
+    	}
 	
 	public static String quebraLinhas(ArrayList<Endereco> bloco) {
 		String texto = "";
@@ -41,11 +41,11 @@ public class LeituraEscrita {
 		return texto;
 	}
 	
-    public static void escritor(String pathDois, String textoPronto) throws IOException {
-    	FileWriter arq = new FileWriter(pathDois,true);
-    	PrintWriter gravarArq = new PrintWriter(arq);
-    	gravarArq.print(textoPronto);
-    	arq.close();
-    }
+    	public static void escritor(String pathDois, String textoPronto) throws IOException {
+		FileWriter arq = new FileWriter(pathDois,true);
+		PrintWriter gravarArq = new PrintWriter(arq);
+		gravarArq.print(textoPronto);
+		arq.close();
+	}
 	
 }
