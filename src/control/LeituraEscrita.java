@@ -1,6 +1,5 @@
-package control;
+package br.cefet;
 
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,17 +8,18 @@ import java.util.Scanner;
 
 public class LeituraEscrita {
 	
-	public static ArrayList leitor(String path, int quantidadeRegistros) throws IOException {
-    	Scanner scanner = new Scanner(new FileReader(path)).useDelimiter("\\n"); 
+	public static ArrayList leitor(Scanner scanner, int quantidadeRegistros) throws IOException {
 		String linha = "";
 		String arrayLinha[] = null;
 		ArrayList<Endereco> bloco = new ArrayList<Endereco>();
 		int quantLinhas = 0;
 		
 		while (quantLinhas < quantidadeRegistros) {
-			linha = scanner.next();
-			//System.out.println(linha);
-			//bloco.add(scanner.next());
+			if (scanner.hasNext()) {
+				linha = scanner.next();
+			}else {
+				break;
+			}
 			bloco.add(new Endereco(
 					linha.substring(0,71), 
 					linha.substring(72,143), 
@@ -41,8 +41,8 @@ public class LeituraEscrita {
 		return texto;
 	}
 	
-    public static void escritor(String texto, String textoPronto) throws IOException {
-    	FileWriter arq = new FileWriter(texto);
+    public static void escritor(String pathDois, String textoPronto) throws IOException {
+    	FileWriter arq = new FileWriter(pathDois,true);
     	PrintWriter gravarArq = new PrintWriter(arq);
     	gravarArq.print(textoPronto);
     	arq.close();
