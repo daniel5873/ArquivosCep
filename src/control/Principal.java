@@ -18,7 +18,7 @@ public class Principal {
     	writer.print("");
     	writer.close();
     	
-    	System.out.println("Digite a quantidade de Arquivos a ordenar:");
+    	System.out.println("Digite a quantidade de registros que deseja ordenar:");
     	Scanner scan = new Scanner(System.in);
     	int quantidadeRegistros = scan.nextInt();
     	Scanner scanner = new Scanner(new FileReader(path)).useDelimiter("\\n");
